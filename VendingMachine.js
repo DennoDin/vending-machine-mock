@@ -21,21 +21,16 @@ class VendingMachine {
   }
 
   pressButton(btn) {
-    if (btn === "A" || btn === "B" || btn === "C" || btn === "D") {
+    if (
+      typeof btn === "string" &&
+      btn.charCodeAt(0) >= 65 &&
+      btn.charCodeAt(0) <= 68
+    ) {
       this.row = btn;
       console.log(btn);
     } else if (btn <= 4 && btn >= 1) {
       this.column = btn;
-      let btnNum;
-      if (this.row === "A") {
-        btnNum = 0;
-      } else if (this.row === "B") {
-        btnNum = 1;
-      } else if (this.row === "C") {
-        btnNum = 2;
-      } else if (this.row === "D") {
-        btnNum = 3;
-      }
+      let btnNum = this.row.charCodeAt(0) - 65;
       console.log(this.row + this.column);
       let cost = inventory[btnNum][this.column - 1].price;
       if (
