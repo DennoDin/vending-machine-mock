@@ -1,10 +1,3 @@
-// your class here
-/*
-  >>> Don't forget to use module.exports!
-  What is that? Well, glad you asked.
-  Read about it here: https://www.sitepoint.com/understanding-module-exports-exports-node-js/
-*/
-
 const inventory = require("./inventory");
 
 class VendingMachine {
@@ -46,18 +39,30 @@ class VendingMachine {
             this.till["500"]--;
             coins[0]++;
             change = change - 500;
+            // this.till[500] = this.till[500] - change / 500;
+            // coins[0] = change / 500;
+            // change = change % 500;
           } else if (change >= 100) {
             this.till["100"]--;
             coins[1]++;
             change = change - 100;
+            // this.till[100] = this.till[100] - change / 100;
+            // coins[1] = change / 100;
+            // change = change % 100;
           } else if (change >= 50) {
             this.till["50"]--;
             coins[2]++;
             change = change - 50;
+            // this.till[50] = this.till[50] - change / 50;
+            // coins[0] = change / 500;
+            // change = change % 500;
           } else if (change >= 10) {
             this.till["10"]--;
             coins[3]++;
             change = change - 10;
+            // this.till[10] = this.till[10] - change / 10;
+            // coins[0] = change / 10;
+            // change = change % 10;
           }
         }
         this.balance = 0;
