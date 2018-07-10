@@ -60,6 +60,24 @@ describe("vending machine", () => {
     // expect(machine.balance-machine.till).to.equal(650)
     expect(spy.calledWith("500: 1, 100: 1, 50: 1, 10: 0")).to.be.true;
     expect(machine.balance).to.equal(0);
+
+    //Teardown
+    console.log.restore();
+  });
+
+  it("should return an error message when balance is insufficient to purchase the item", () => {
+    //Setup
+    const machine = new VendingMachine();
+    const spy = sinon.spy(console, "log");
+    //const inventory = require("../inventory");
+
+    //Exercise
+    machine.insertCoin(100);
+    machine.pressButton("A");
+    machine.pressButton(1);
+
+    //Assert
+    expect(spy.calledWith("Error")).to.be.true;
   });
 
   it("should return 0 the balance is checked after the machine is created", () => {
