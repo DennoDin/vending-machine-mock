@@ -18,14 +18,30 @@ describe("vending machine", () => {
     });
     expect(machine.balance).to.equal(500); // Use an ES6 getter
   });
-  it("should have four properties", () => {
-    //setup
+
+  it("should save and console.log a row letter when selected", () => {
+    // Setup
     const machine = new VendingMachine();
 
-    //excercise
-    machine.insertCoin(500);
+    // Exercise
+    machine.pressButton("A");
 
-    //assert
-    expect(machine).to.exist;
+    // Assert
+    expect(machine.row).to.equal("A");
+    // expect(console.log.calledOnce).to.be.true;
+    //expect(console.log.calledWith("A")).to.be.true; //create check for console.log test
+  });
+
+  it("should log the row and column to the console when balance and inventory are sufficient and a column is selected", () => {
+    //Setup
+    const machine = new VendingMachine();
+
+    //Exercise
+    machine.pressButton("A");
+    machine.pressButton(1);
+
+    //Assert
+    // expect(console.log.calledOnce).to.be.true;
+    // expect(console.log.calledWith("A1")).to.be.true;
   });
 });

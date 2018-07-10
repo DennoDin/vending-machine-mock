@@ -8,8 +8,8 @@ class VendingMachine {
   constructor() {
     this.till = { "10": 0, "50": 0, "100": 0, "500": 0 };
     this.balance = 0;
-    this.row = "A";
-    this.column = 0;
+    this.row;
+    this.column;
   }
 
   insertCoin(int) {
@@ -22,6 +22,16 @@ class VendingMachine {
       this.till["100"]++;
     } else if (int === 500) {
       this.till["500"]++;
+    }
+  }
+
+  pressButton(btn) {
+    if (btn === "A" || btn === "B" || btn === "C" || btn === "D") {
+      this.row = btn;
+      console.log(btn);
+    } else if (btn <= 4 && btn >= 1) {
+      this.column = btn;
+      console.log(btn);
     }
   }
 }
