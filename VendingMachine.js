@@ -34,7 +34,6 @@ class VendingMachine {
       console.log(btn);
     } else if (btn <= 4 && btn >= 1) {
       this.column = btn;
-      console.log(btn);
       let btnNum;
       if (this.row === "A") {
         btnNum = 0;
@@ -45,6 +44,7 @@ class VendingMachine {
       } else if (this.row === "D") {
         btnNum = 3;
       }
+      console.log(this.row + this.column);
       if (inventory[btnNum][this.column - 1].count > 0) {
         --inventory[btnNum][this.column - 1].count;
       }
