@@ -23,14 +23,17 @@ describe("vending machine", () => {
   it("should save and console.log a row letter when selected", () => {
     // Setup
     const machine = new VendingMachine();
+    const spy = sinon.spy(console, "log");
 
     // Exercise
     machine.pressButton("A");
 
     // Assert
     expect(machine.row).to.equal("A");
-    // expect(console.log.calledOnce).to.be.true;
-    //expect(console.log.calledWith("A")).to.be.true; //create check for console.log test
+    expect(spy.calledWith("A")).to.be.true;
+
+    //Teardown
+    console.log.restore();
   });
 
   it("should log the row and column to the console when balance and inventory are sufficient and a column is selected", () => {
@@ -65,11 +68,27 @@ describe("vending machine", () => {
     console.log.restore();
   });
 
+  it("should console.log an error message when the inventory is out", () => {
+    //Setup
+    const machine = new VendingMachine();
+    const spy = sinon.spy(console, "log");
+
+    //Exercise
+    machine.insertCoin(100);
+    machine.pressButton("B");
+    machine.pressButton(2);
+
+    //Assert
+    expect(spy.calledWith("Error")).to.be.true;
+
+    //Teardown
+    console.log.restore();
+  });
+
   it("should return an error message when balance is insufficient to purchase the item", () => {
     //Setup
     const machine = new VendingMachine();
     const spy = sinon.spy(console, "log");
-    //const inventory = require("../inventory");
 
     //Exercise
     machine.insertCoin(100);
@@ -78,6 +97,9 @@ describe("vending machine", () => {
 
     //Assert
     expect(spy.calledWith("Error")).to.be.true;
+
+    //Teardown
+    console.log.restore();
   });
 
   it("should return 0 the balance is checked after the machine is created", () => {
