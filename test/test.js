@@ -1,5 +1,6 @@
 const VendingMachine = require("../VendingMachine");
 const { expect } = require("chai");
+const sinon = require("sinon");
 
 describe("vending machine", () => {
   it("should accept valid coins", () => {
@@ -34,6 +35,7 @@ describe("vending machine", () => {
 
   it("should log the row and column to the console when balance and inventory are sufficient and a column is selected", () => {
     //Setup
+    const spy = sinon.spy(console, "log");
     const machine = new VendingMachine();
     const inventory = require("../inventory");
 
@@ -44,9 +46,10 @@ describe("vending machine", () => {
     machine.pressButton(1);
 
     //Assert
-    // expect(console.log.calledOnce).to.be.true;
-    // expect(console.log.calledWith("A1")).to.be.true;
-    // expect("output message")
+    expect(spy.called).to.be.true;
+    expect(spy.calledWith("A1")).to.be.true;
+    // expect("a message should be logged stating "Here is your [item name]")
+    expect(spy.calledWith("Here is your plumbus"));
     expect(inventory[0][0].count).to.equal(4);
     // expect("return change")
   });
