@@ -12,10 +12,10 @@ describe("vending machine", () => {
 
     // Assert
     expect(machine.till).to.deep.equal({
-      10: 0,
-      50: 0,
-      100: 0,
-      500: 1,
+      10: 10,
+      50: 10,
+      100: 10,
+      500: 11,
     });
     expect(machine.balance).to.equal(500); // Use an ES6 getter
   });
@@ -48,10 +48,18 @@ describe("vending machine", () => {
     //Assert
     expect(spy.called).to.be.true;
     expect(spy.calledWith("A1")).to.be.true;
-    // expect("a message should be logged stating "Here is your [item name]")
-    expect(spy.calledWith("Here is your plumbus"));
+    expect(spy.calledWith("Here is your plumbus")).to.be.true;
     expect(inventory[0][0].count).to.equal(4);
-    // expect("return change")
+    //the correct change should be returned (log type and number of coins to console)
+    expect(machine.till).to.deep.equal({
+      10: 10,
+      50: 9,
+      100: 9,
+      500: 11,
+    });
+    // expect(machine.balance-machine.till).to.equal(650)
+    expect(spy.calledWith("500: 1, 100: 1, 50: 1, 10: 0")).to.be.true;
+    expect(machine.balance).to.equal(0);
   });
 
   it("should return 0 the balance is checked after the machine is created", () => {
