@@ -84,6 +84,8 @@ class VendingMachine {
             ", 10: " +
             coins[3]
         );
+      } else if (this.balance < cost) {
+        console.log("Error");
       }
     }
   }
