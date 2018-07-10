@@ -17,15 +17,7 @@ class VendingMachine {
 
   insertCoin(int) {
     this.balance += int;
-    if (int === 10) {
-      this.till["10"]++;
-    } else if (int === 50) {
-      this.till["50"]++;
-    } else if (int === 100) {
-      this.till["100"]++;
-    } else if (int === 500) {
-      this.till["500"]++;
-    }
+    this.till[int]++;
   }
 
   pressButton(btn) {
