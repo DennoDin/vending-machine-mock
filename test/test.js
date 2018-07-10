@@ -18,4 +18,14 @@ describe("vending machine", () => {
     });
     expect(machine.balance).to.equal(500); // Use an ES6 getter
   });
+  it("should have four properties", () => {
+    //setup
+    const machine = new VendingMachine();
+
+    //excercise
+    machine.insertCoin(500);
+
+    //assert
+    expect(machine).to.exist;
+  });
 });
