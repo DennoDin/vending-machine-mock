@@ -4,6 +4,9 @@
   What is that? Well, glad you asked.
   Read about it here: https://www.sitepoint.com/understanding-module-exports-exports-node-js/
 */
+
+const inventory = require("./inventory");
+
 class VendingMachine {
   constructor() {
     this.till = { "10": 0, "50": 0, "100": 0, "500": 0 };
@@ -32,6 +35,19 @@ class VendingMachine {
     } else if (btn <= 4 && btn >= 1) {
       this.column = btn;
       console.log(btn);
+      let btnNum;
+      if (this.row === "A") {
+        btnNum = 0;
+      } else if (this.row === "B") {
+        btnNum = 1;
+      } else if (this.row === "C") {
+        btnNum = 2;
+      } else if (this.row === "D") {
+        btnNum = 3;
+      }
+      if (inventory[btnNum][this.column - 1].count > 0) {
+        --inventory[btnNum][this.column - 1].count;
+      }
     }
   }
 }
